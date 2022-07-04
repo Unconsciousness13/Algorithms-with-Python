@@ -8,6 +8,6 @@ def gen01(idx, vector):
 
 
 n = int(input())
-vector = [0] * n
+vector = [None] * n
 
 gen01(0, vector)
