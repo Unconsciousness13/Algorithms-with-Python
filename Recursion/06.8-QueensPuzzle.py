@@ -12,8 +12,12 @@ def set_queen(row, col, board, rows, cols, left_diagonals, right_diagonals):
     right_diagonals.add(row + col)
 
 
-def remove_queen(board):
-    pass
+def remove_queen(row, col, board, rows, cols, left_diagonals, right_diagonals):
+    board[row][col] = '-'
+    rows.remove(row)
+    cols.remove(col)
+    left_diagonals.remove(row-col)
+    right_diagonals.remove(row + col)
 
 
 def can_place_queen(row, col, rows, cols, left_diagonals, right_diagonals):
@@ -38,7 +42,7 @@ def put_queens(row, board, rows, cols, left_diagonals, right_diagonals):
                       left_diagonals, right_diagonals)
             put_queens(row + 1, board, rows, cols,
                        left_diagonals, right_diagonals)
-            remove_queen(row, col, board)
+            remove_queen(row, col, board, rows, cols, left_diagonals, right_diagonals)
 
 
 n = 8
@@ -46,4 +50,4 @@ board = []
 [board.append(['-'] * n) for _ in range(8)]
 
 
-put_queens(0, board)
+put_queens(0, board , set(), set(), set (), set())
